@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <style>
+        body {
+            background: url('https://th.bing.com/th/id/R.41711a1e1349abfb49832a940a0ab1a9?rik=o5yU4DmiE5RbLA&riu=http%3a%2f%2fimage.shutterstock.com%2fz%2fstock-photo-blackjack-table-295741748.jpg&ehk=u9ugAgViaqtzmUkx4RgsPzAEJbmcCT41AHkwN9DH%2bNY%3d&risl=&pid=ImgRaw&r=0') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .table {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1000px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .dealer, .player {
+            margin: 20px 0;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .card {
+            background: white;
+            color: black;
+            padding: 15px;
+            width: 80px;
+            height: 120px;
+            text-align: center;
+            font-size: 24px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .message {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .buttons {
+            position: absolute;
+            bottom: -60px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            text-decoration: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid white;
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+
+        .btn::after {
+            content: attr(data-text);
+            font-size: 16px;
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .reset {
+            background-color: rgba(204, 0, 0, 0.8);
+            color: white;
+            width: auto;
+            height: auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .reset:hover {
+            background-color: rgba(153, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="table">
+        <h1>Blackjack</h1>
+        <div class="dealer">
+            <h2>Dealer's Hand</h2>
+            <div class="card-container">
+                {% for card in dealer_hand %}
+                    <div class="card">{{ card }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="player">
+            <h2>Your Hand</h2>
+            <div class="card-container">
+                {% for card in player_hand %}
+                    <div class="card">{{ card }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <p class="message">{{ message }}</p>
+        <div class="buttons">
+            <a href="/hit" class="btn" data-text="Hit"></a>
+            <a href="/stand" class="btn" data-text="Stand"></a>
+            <a href="/" class="btn reset">Restart</a>
+        </div>
+    </div>
+</body>
+</html>
